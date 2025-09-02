@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Set modules to load for current job
+
+export GRIB_DEFINITION_PATH=/home/human/fondamentali/misc/ec-2.14.1/definitions.edzw:/home/human/fondamentali/misc/ec-2.14.1/definitions
+export GRIB_SAMPLES_PATH=/home/human/fondamentali/misc/ec-2.14.1/samples
+
+
+export OMP_NUM_THREADS=1
+export KMP_STACKSIZE=10G
+export MV2_ENABLE_AFFINITY=0
+export MV2_USE_ALIGNED_ALLOC=1
+#export UCX_TLS=ud
+
+#source /home/vittorio/MODULI/openmpi/5.0.3/NVHPC/setta_modulo
+########source /home/vittorio/MODULI/openmpi/5.0.5/NVHPC/setta_modulo
+source /home/vittorio/MODULE/RH8/openmpi/4.1.2/nvhpc-nompi/21.9/cuda/11.2//ucx/setta_modulo
+#########source /home/vittorio/MODULE/RH8/openmpi/4.1.2/nvhpc-nompi/21.9/cuda/11.2//ucx-cuda/setta_modulo
+#source /home/vittorio/MODULE/RH8/hpctoolkit_reloaded_cuda/setta_ambiente
+
+cd /home/vittorio/CORSA/ICON_IT_1km 
+
+rm pippo
+rm newfile.pippo
+echo $SLURM_JOB_NODELIST
+scontrol show hostnames > pippo
+sed -i "s/$/ slots=4/g" pippo
+sed '$,$s/slots=4/slots=6/g' pippo > newfile.pippo
+
+#export OMP_NUM_THREADS=1
+
+#SBATCH --gres=gpu:4 
+#SBATCH --propagate=STACK
+ulimit -l unlimited
+
+
+#for nproma in 2048 4096 8192 9216 10240 11264 11744 12288 ; do
+#for nproma in 13312 14336 15360 16384 17348 18372 19396 20420 ; do
+for nproma in 21444 22468 23492 24516 25540 26564 27588 28612 ; do
+  export ICON_NPROMA=$nproma
+  echo "Testing nproma = $nproma"
+#awk -v val="$ICON_NPROMA" 'NR==17 { gsub("11744", val ) } { print }' prova_NAMELIST_lfff  > NAMELIST_lfff 
+awk -v val="$ICON_NPROMA" 'NR==17 { gsub("11744", val ) } { print }' prova_NAMELIST_lfff  > NAMELIST_lfff 
+mpirun -x UCX_NET_DEVICES=mlx4_0:1 -x GRIB_DEFINITION_PATH -x GRIB_SAMPLES_PATH -hostfile newfile.pippo  icon_mapping_cscs 
+done  
+#mpirun  -x GRIB_DEFINITION_PATH -x GRIB_SAMPLES_PATH -hostfile newfile.pippo  icon_mapping_cscs 
+#mpirun -mca pml ucx -x UCX_NET_DEVICES=mlx4_0:1 -x GRIB_DEFINITION_PATH -x GRIB_SAMPLES_PATH -hostfile newfile.pippo  icon_mapping_cscs 
+#mpirun --map-by socket -mca pml ucx -x UCX_NET_DEVICES=mlx4_0:1 -x GRIB_DEFINITION_PATH -x GRIB_SAMPLES_PATH -hostfile newfile.pippo  icon_mapping_cscs 
+#mpirun --report-bindings --bind-to core --map-by numa -rank-by core -mca pml ucx -x UCX_NET_DEVICES=mlx4_0:1 -x GRIB_DEFINITION_PATH -x GRIB_SAMPLES_PATH -hostfile newfile.pippo  icon_mapping_cscs 
+#mpirun --cpu-list 0,1,2,3 -mca pml ucx -x UCX_NET_DEVICES=mlx4_0:1 -x GRIB_DEFINITION_PATH -x GRIB_SAMPLES_PATH -hostfile newfile.pippo  icon_mapping_cscs 
