@@ -1,0 +1,418 @@
+&parallel_nml
+!!!!!nproma                       = 8    ! SX-9: 1024, Cray: 8
+!!!!!!!!!nproma                       = 1200    ! SX-9: 1024, Cray: 8
+!!!!nproma                       = 1024    ! SX-9: 1024, Cray: 8
+!!!!nproma                       = 2048    ! SX-9: 1024, Cray: 8
+!!!!!!nproma                       = 2900    ! SX-9: 1024, Cray: 8
+!nproma                       = 4096    ! SX-9: 1024, Cray: 8
+!nproma                       = 8192    ! SX-9: 1024, Cray: 8
+!nproma                       = 5080    ! SX-9: 1024, Cray: 8
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!nproma                       = 10944 
+!================================================================
+!==========================   20 NODI ============================
+!!nproma                       =  8192 
+!nproma_sub                   = 2048 
+!!nproma_sub                   = 3072 
+!==========================   16 NODI ============================
+nproma                       =  11744 
+nproma_sub                   = 2048 
+!nproma_sub                   = 1024 
+!==========================   12 NODI ============================
+!nproma                       =  11744 
+!nproma_sub                   = 2048 
+!==========================   8 NODI ============================
+!nproma                       =  31744 
+!!nproma                       =  15360 
+!nproma_sub                   = 2048 
+!================================================================
+!==========================   4 NODI ============================
+!!nproma                       = 30720 
+!nproma                       = 25600 
+!nproma_sub                   = 2048 
+!================================================================
+!==========================   2 NODI ============================
+!nproma                        = 51200 
+!nproma                        = 52224 
+!nproma                        = 12288 
+!nproma_sub                    = 2048 
+!================================================================
+!NPROMA_SUB                   =6444
+!nproma                       = 17384    ! SX-9: 1024, Cray: 8
+! nproma                       = 21464    ! SX-9: 1024, Cray: 8
+! nproma                       = 10944    ! SX-9: 1024, Cray: 8
+!!!!nproma                       = 5621    ! SX-9: 1024, Cray: 8
+! nproma                       =  2999    ! SX-9: 1024, Cray: 8
+! nproma                       =  1589    ! SX-9: 1024, Cray: 8
+!NBLOCKS_C                      = 16
+ p_test_run                   = .false.
+! l_test_openmp                = .false.
+! l_log_checks                 = .false.
+ num_io_procs                 = 1   ! 0: no dedicated I/O processor
+!!!!io_proc_chunk_size = 128
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! num_restart_procs           =  1         ! number of restart processors
+!num_prefetch_proc           =  0         ! number of processors for LBC prefetching 
+! itype_comm                   = 1
+ iorder_sendrecv              = 3           ! (1), 3: best value for CRAY
+ num_dist_array_replicas      = 1000000
+/
+&grid_nml
+ dynamics_grid_filename  =  'ICON-IT1km_DOM01.nc',
+ radiation_grid_filename =  'ICON-IT1km_DOM01.parent.nc',
+ dynamics_parent_grid_id      = 0
+ lredgrid_phys                = .true.
+ lfeedback                    = .true.
+ ifeedback_type               = 2
+ l_limited_area               = .true.
+ start_time                   = 0.
+! start_time                   = 0, 9999999
+! end_time                     = 0, 432000   ! stop nest after 120 h
+/
+&initicon_nml
+! init_mode                    = 5 ! 1: operation mode, 5: IAU, 6: 5+sma_inc
+ init_mode                    = 2 ! For ICON-LAM runs, use 7 when initialized from ICON and 2 from IFS
+! dt_iau                       = 600    ! Window for incr.analysis update
+! dt_shift                     = 0  ! Offset for incr.analysis update
+! type_iau_wgt                 = 1           ! IAU weighting function (const.) !26/01/2021
+! iterate_iau                  = .true.      ! iterate IAU cycle with one-sided and centered windows
+! zpbl1                        = 500.
+! zpbl2                        = 1000.
+ lread_ana                    = .false.        ! (T) Read dwdana
+!!! lp2cintp_incr                = .true.    ! parent-to-child-interpolation
+!!! lp2cintp_sfcana              = .true.  ! of analyses (.false. for DET!)
+ lp2cintp_incr         = .false.
+ lp2cintp_sfcana       = .false.
+! dwdfg_filename               = "<path>fg_R<nroot0>B<jlev>_DOM<idom>.grb"
+! dwdana_filename              = "<path>an_R<nroot0>B<jlev>_DOM<idom>.grb"
+!!! check_ana(1)%list            = 'T_SO','FR_ICE','P','QV','T','U','V','FRESHSNW','H_SNOW'
+!!! check_ana(2)%list            = 
+ check_ana(1)%list            = 'P','QV','T','U','V'
+ check_ana(2)%list            = 'FRESHSNW','H_SNOW'  !20210128  ,'T_SO' ! NOOOOOOOOOOOOO in ens
+
+! check_fg(1)%list      = 't_2m_filtbias','alb_seaice','evap_pl'
+! check_fg(1)%list      = 'alb_seaice','evap_pl'
+! check_fg(2)%list      =
+ use_lakeiceana               = .true.
+ qcana_mode                   = 0           ! (0) no QC-increments, 
+                                            ! (1) QC+QV-increments added to QV, 
+                                            ! (2) QC-increments added to QC if already present at gridpoint
+                                            !     and added to QV if not
+ qiana_mode                   = 0           ! 0/1: ignore/use QI increments 
+ qrsgana_mode                 = 0           ! 0/1: ignore/use QR,QS,QG 
+ ifs2icon_filename            = "giff00000000_an_ifss_icon_lbc.nc" ! init_mode 2
+ dwdfg_filename               = "<path>fg_DOM01_ML_0010000.grb" ! init_mode 7
+ dwdana_filename               = "<path>laf20221118000000.015" ! init_mode 7
+ filetype                     = 4        
+ ana_varnames_map_file        = "map_file.ana"
+ ltile_coldstart              = .true.    ! intermediate mode until tile-based I/O is available
+ ltile_init                   = .true.    ! True for IFS, False for ICON
+ /
+&limarea_nml
+ itype_latbc     = 1
+ dtime_latbc     = 3600
+! nlev_latbc      = 60
+ latbc_path      = './BC'
+!!! latbc_boundary_grid = 'lateral_boundary.grid.nc'
+ !!! latbc_boundary_grid = 'icon_grid_0044_R19B07_L_lbc.nc'
+ !latbc_filename  = 'ilbff<ddhhmmss>'
+ latbc_varnames_map_file = 'dict.latbc'
+ latbc_filename  = "gfff<ddhhmmss>_icon_lbc.nc"
+ init_latbc_from_fg =.false. ! take initial lateral boundary conditions from first guess
+! 2020021313 init_latbc_from_fg = .false.
+ /
+&io_nml
+! dt_checkpoint                 = 863913600
+! echotop_meta(1)%time_interval = 900.0             ! Reset der Druckminimumbestimmung auf domain 1 alle 15'
+! echotop_meta(1)%dbzthresh     = 18.               ! Liste der dbz-thresholds (hier nur einer) fuer domain 1
+ itype_pres_msl   = 5           ! (1) 4: IFS method with consistency fix
+ itype_rh         = 1  ! (1) 2: mixed phase (water and ice)
+ gust_interval    = 3600.
+!!!lzaxis_reference = .true.      ! (F) use REFERENCE instead of HYBRID
+! lmask_boundary               = .true. ! false in assimilation cycle
+                                        ! if interpolation zone should be masked *in output*
+ lmask_boundary = .true.
+ output_nml_dict               = 'map_file.fc'
+ srh_heights = 1000.0, 3000.0
+/
+&run_nml
+ num_lev                      = 65
+ lvert_nest                   = .false.  ! use vertical nesting if a nest is active
+! nsteps                       = 4320
+! nsteps                       =  900
+! nsteps                       = 8640
+! nsteps                       = 17280
+ nsteps                       = 720
+! nsteps                       = 200
+! nsteps                       = 1
+ dtime                        = 10       ! timestep in seconds
+ ldynamics                    = .true.        ! dynamics
+ ltransport                   = .true.
+ iforcing                     = 3             ! NWP forcing
+! lart                         = .false.       ! ICON-ART main switch
+ ltestcase                    = .false.       ! false: run with real data
+ msg_level                    = 12            ! cambiato 26/01/2021      
+ ltimer                       = .true.        ! set .true. for detailed timer output
+ timers_level                 = 10            ! can be increased up to 10 for detailed timer output
+!!!activate_sync_timers         = .false.
+ ntracer                      = 5
+ check_uuid_gracefully        = .true.
+ output                       = "nml"
+ ldass_lhn                    = .false.
+/
+&nwp_phy_nml
+ inwp_gscp                    = 2,   ! 1: default, 2: graupel scheme for convection-permitting scales
+ mu_rain                      = 0.5           ! new tuning becoming operational in July 2018
+ rain_n0_factor               = 0.1           !       "
+ inwp_convection              = 1
+ lshallowconv_only            = .false. !26/01/2021
+ lgrayzone_deepconv          = .true.  !26/01/2021 
+ inwp_radiation               = 4        !26/01/2021
+ inwp_cldcover                = 1   ! 0: no cld, 1: new diagnostic, 3: COSMO, 5: grid scale
+ inwp_turb                    = 1
+ inwp_satad                   = 1
+ inwp_sso                     = 1
+ inwp_gwd                     = 0
+ inwp_surface                 = 1
+ icapdcycl                    = 3   ! CAPE modification, improve diurnal cycle over tropical land
+ latm_above_top               = .true.
+ efdt_min_raylfric            = 7200.
+ itype_z0                     = 2   ! 1: default, 2: turn off SSO part of z0
+ icpl_aero_conv               = 1
+ icpl_aero_gscp               = 1
+! icpl_o3_tp                   = 1
+!!!!!!!!!!!VIC dt_conv   = 20.
+!!!VIC dt_rad    = 20 
+!!!VIC dt_sso    = 20. 
+!!!VIC dt_gwd    = 20.      
+dt_conv   = 120.,90.,90.
+dt_rad    = 720.
+dt_sso    = 120.,360.,360.
+dt_gwd    = 360.,360.,360.
+ ldetrain_conv_prec = .true.  ! .true. should be used in R03B08 EU-nest only
+ lrtm_filename      = 'rrtmg_lw.nc'        ! 'rrtmg_lw.nc'
+! cldopt_filename    = 'rrtm_cldopt.nc'        ! 'ECHAM6_CldOptProps.nc'
+ cldopt_filename    = 'ECHAM6_CldOptProps.nc'  !'rrtm_cldopt.nc'        ! 'ECHAM6_CldOptProps.nc'
+/
+&nwp_tuning_nml
+ itune_albedo     = 1     ! somewhat reduced albedo (w.r.t. MODIS data) over Sahara
+ tune_gkdrag      = 0.0
+ tune_gkwake      = 0.25
+ tune_gfrcrit     = 0.333
+ tune_gust_factor = 7.0  !26/01/2021 
+!!!!!!!!!!!!!!20200819 tune_dust_abs    = 1.  ! non in guenther
+ tune_zvz0i       = 0.85    ! 26/01/2021
+!++ tune_box_liq_asy = 3.25  ! new tuning becoming operational in July 2018
+ tune_box_liq     = 0.08   ! 12/04/2021
+ tune_box_liq_asy = 2.0  ! 12/04/2021
+ tune_minsnowfrac = 0.3
+ tune_sgsclifac   = 1.0    ! new tuning becoming operational in July 2019 ! non in guenther
+ tune_rcucov = 0.075       ! 26/01/2021
+ tune_rhebc_land = 0.825   ! 26/01/2021
+ icpl_turb_clc  = 2        ! 26/01/2021
+ max_calibfac_clcl = 2.0   ! 26/01/2021
+ 
+/
+&turbdiff_nml
+ tkhmin  = 0.5 ! new default since rev. 16527
+ tkmmin  = 0.75  !           " 
+ !26/01/2021  tkmmin_strat  = 4  ! non in guenther
+ pat_len = 750.
+ !26/01/2021  c_diff  = 0.2     ! non in guenther
+ rat_sea = 0.8      !26/01/2021
+ ltkesso = .true.
+ frcsmot = 0.2      ! these 2 switches together apply vertical smoothing of the TKE source terms  ! non in guenther
+ imode_frcsmot = 2  ! in the tropics (only), which reduces the moist bias in the tropical lower troposphere ! non in guenther
+ ! use horizontal shear production terms with 1/SQRT(Ri) scaling to prevent unwanted side effects:
+ itype_sher = 2
+ ltkeshs    = .true.
+ a_hshr     = 2.0
+ !26/01/2021  alpha0     = 0.0123  ! non in guenther
+ !26/01/2021  alpha0_max = 0.0335        ! Charnock parameter tuning  ! non in guenther
+ alpha1     = 0.125    !26/01/2021
+ icldm_turb = 2  ! ** new recommendation for v2.0.15 in conjunction with evaporation fix for grid-scale rain **
+ tur_len       = 300.
+ rlam_heat     = 10.0  !26/01/2021
+ q_crit        = 2.0
+ imode_tkesso  = 2
+/
+&lnd_nml
+ ntiles                       = 3
+ lmulti_snow                  = .false.
+ itype_heatcond               = 3
+ idiag_snowfrac               = 20
+ itype_snowevap               = 3 !becoming operational in late summer 2018, requires cycling of snow_age and hsnow_max
+!!!                     and proper initialization of snow_age starting at the beginning of the snow accumulation period
+ lsnowtile                    = .true.  !.false.
+ lseaice                      = .true.
+ llake                        = .true.
+ lprog_albsi                  = .true.  ! non in guenther
+ itype_lndtbl                 = 4
+ itype_root                   = 2
+ itype_evsl                   = 4
+ itype_canopy                 = 2 !26/01/2021  !2:Jan Peter scheme , 1=no Jan Peter Scheme
+ nlev_snow                    = 3
+ itype_trvg                   = 3 ! operational since 14 March 2018, requires FG cycling of EVAP_PL (internal name plantevap)
+ cwimax_ml                    = 5.e-4
+ c_soil                       = 1.25
+ c_soil_urb                   = 0.5
+ sstice_mode                  = 2        ! requires extpar >= 20170202
+/
+&radiation_nml
+ irad_o3                      = 79
+ irad_aero                    = 6
+ albedo_type                  = 2        ! 1: default, 2: MODIS
+! in guenther  islope_rad  = 0
+ direct_albedo_water          = 3  !26/01/2021
+ albedo_whitecap             = 1  !26/01/2021
+ islope_rad                  = 0  !26/01/2021
+ vmr_co2                      = 390.e-06 ! values representative for 2012
+ vmr_ch4                      = 1800.e-09
+ vmr_n2o                      = 322.0e-09
+ vmr_o2                       = 0.20946
+ vmr_cfc11                    = 240.e-12
+ vmr_cfc12                    = 532.e-12
+ ecrad_data_path              = './ecrad_data_path'
+! icld_overlap                =                          2         ! Generalized Random
+! ecrad_llw_cloud_scat        =                     .TRUE.         ! Longwave cloud scattering
+! ecrad_iliquid_scat          =                          0         ! Optical properties used for liquid cloud scattering (0 = SOCRATES)
+ ecrad_isolver               =                          2         !  VITTORIO
+! ecrad_iice_scat             =                          0         ! Optical properties used for ice cloud scattering (0 = Fu)
+/
+&nonhydrostatic_nml
+ iadv_rhotheta                = 2
+ ivctype                      = 2
+ itime_scheme                 = 4
+ exner_expol                  = 0.333
+ vwind_offctr                 = 0.2
+ damp_height                  = 12250. !damp_height     = 12250. in geunther
+ rayleigh_coeff               = 5.0
+ !26/01/2021  lhdiff_rcf                   = .true.
+ divdamp_fac                  = 0.004         ! factor 8 iff divdamp_order=2 !!!
+ divdamp_order                = 24       ! use 24 for forecast, 2 for IAU
+ divdamp_type                 = 32        ! (3): 2 for assimilation cycle
+ divdamp_trans_start          = 12500. ! use 2500. in assimilation cycle
+ divdamp_trans_end            = 17500.   ! use 5000. in assimilation cycle
+ ndyn_substeps                = 5     ! non in guenther
+!VIC l_open_ubc                   = .false.
+ igradp_method                = 3
+ l_zdiffu_t                   = .true.
+ thslp_zdiffu                 = 0.02
+ thhgtd_zdiffu                = 125.
+ htop_moist_proc              = 22500.
+ hbot_qvsubstep               = 22500   ! revised (to avoid too large CFL)
+/
+&sleve_nml
+ min_lay_thckn                = 20.                ! lowest level thickness (between half-levels)
+!itype_laydistr                = 1  !26/01/2021 
+ !26/01/2021 max_lay_thckn                = 25000.    ! maximum layer thickness below htop_thcknlimit ! non in guenther
+ !26/01/2021 htop_thcknlimit              = 15000.  ! 15 km is the default
+ top_height                   = 22000.
+ stretch_fac                  = 0.65
+ decay_scale_1                = 4000.
+ decay_scale_2                = 2500.
+ decay_exp                    = 1.2
+ flat_height                  = 16000.
+/
+&dynamics_nml
+ iequations                   = 3
+!VIC idiv_method                  = 1
+ divavg_cntrwgt               = 0.50
+ lcoriolis                    = .true.
+/
+&transport_nml
+ ctracer_list                 = '12345'
+ ivadv_tracer                 = 3,3,3,3,3,3  !26/01/2021
+ itype_hlimit                 = 3,4,4,4,4,4  !26/01/2021
+ ihadv_tracer                 = 52,2,2,2,2,2 !26/01/2021
+ llsq_svd                     = .true.      !26/01/2021
+ beta_fct                     = 1.005        !26/01/2021
+! nadv_substeps               =  2         ! number of integration steps per fast physics time step
+!!! iadv_tke                     = 0
+/
+&diffusion_nml
+ hdiff_order                  = 5
+ itype_vn_diffu               = 1
+ itype_t_diffu                = 2
+ hdiff_efdt_ratio             = 24.
+ hdiff_smag_fac               = 0.025
+ lhdiff_vn                    = .true.
+ lhdiff_temp                  = .true.
+/
+&interpol_nml
+ nudge_zone_width             = 10
+ nudge_max_coeff              = 0.075
+ lsq_high_ord                 = 3
+ l_intp_c2l                   = .true.
+ l_mono_c2l                   = .true.
+ support_baryctr_intp         = .false. !.true. !26/01/2021
+/
+&gridref_nml
+ grf_intmethod_e  = 6
+ grf_intmethod_ct = 2
+ grf_tracfbk      = 2
+ denom_diffu_v    = 150.
+/
+&extpar_nml
+ itopo                        = 1
+ itype_vegetation_cycle       = 3 ! requires extpar data with T2M climatology, i.e. date > 20180101; operational since March 2018
+ n_iter_smooth_topo           = 1,1
+ heightdiff_threshold         = 2250.
+ hgtdiff_max_smooth_topo      = 750.,750.
+ extpar_filename      = 'ICON-IT1km_DOM01_external_parameter.nc'
+ read_nc_via_cdi         = .true. !!!!!
+ itype_lwemiss       = 2       !26/01/2021
+/
+&gribout_nml
+ significanceOfReferenceTime     = 0                    ! analysis
+ productionStatusOfProcessedData = 1                    ! Oper. test products
+ backgroundProcess               = 0  ! 0=main,2=assimilation
+ generatingProcessIdentifier     = 1,2,3                ! 1=icogl,2=icoeu,3=icode
+ preset                          = 'deterministic'
+!typeOfProcessedData             = 1                    ! [WMO Table 1.4] forecast
+!typeOfGeneratingProcess         = 2                    ! [WMO Table 4.3] forecast
+!localDefinitionNumber           = 254                  ! [DWD] Deterministic system
+ numberOfForecastsInEnsemble     = 40
+ perturbationNumber              = 000
+ typeOfEnsembleForecast          = 192                  ! See WMO Table 4.6
+ localNumberOfExperiment         = 0606                ! [DWD] Experiment ID
+ generatingcenter                = 78                   ! [DWD]
+ generatingsubcenter             = 255                  ! [DWD]
+ tablesVersion                   = 19
+ lgribout_24bit                  = .true.               ! (F) write rho,theta,T,p with 24bits
+ lspecialdate_invar              = .false.
+/
+&nudging_nml
+!!!20200819 comm and the act 20200822 nudge_type = 1    ! Hauptschalter nudging upper boundary
+ nudge_type = 1    ! Hauptschalter nudging upper boundary
+/
+&output_nml
+!OUTPUT on COSMO-IT GRID
+ filetype                     =  2                        ! output format: 2=GRIB2, 4=NETCDFv2
+ dom                          =  1
+! output_bounds                =  0,172800,3600    ! start, end, increment
+ output_bounds                =  0,172800,3600    ! start, end, increment
+ steps_per_file               =  1
+ mode                         =  1                        ! 1: forecast mode (relative t-axis), 2: climate mode (absolute t-axis)
+ include_last                 = .FALSE.
+ output_filename              = './out/lfff'
+ filename_format              = '<output_filename><ddhhmmss>'                   ! file name base
+ml_varlist       = 'u','v'
+!VIC ml_varlist='u', 'v', 'w', 'temp', 'pres', 'pres_msl', 'qv', 'qc', 'qi', 'qr', 'qs', 'qg','clc','rh','smi','group:precip_vars','clcl','clcm','clch', 'group:additional_precip_vars','tqv','tqc','tqi', 'group:land_vars', 'freshsnow', 'albdif','t_2m','td_2m','rh_2m','pres_sfc','u_10m','v_10m','gust10','ASODIFD_S','ASODIFU_S','ASODIRD_S','ALHFL_S','ASHFL_S', 'ASOB_S', 'ASOB_T', 'ATHB_T', 'ATHB_S', 'ATHD_S', 'ATHU_S', 'AUMFL_S','AVMFL_S','TMAX_2M', 'TMIN_2M','runoff_s','runoff_g','UH_MAX','LPI_MAX','SDI2','SNOWLMT','HZEROCL','ww','CEILING','topography_c','fr_land','SOILTYP','srh','aer_bc', 'aer_ss', 'hbas_con', 'htop_con', 'rain_gsp_rate', 'htop_dc', 'tqg', 'tkvh', 'tcm', 'tch', 'cldepth', 'alhfl_bs', 'alhfl_pl', 'aswflx_par_sfc', 'graupel_gsp_rate', 'snow_gsp_rate', 't_b1_lk', 't_bot_lk', 'h_b1_lk', 't_wml_lk', 't_mnw_lk', 'h_ml_lk', 'skinc', 'for_d', 'gz0', 'topography_c', 'sso_stdh', 'aer_su', 'aer_du', 'aer_or', 'cape_ml', 'cin_ml', 'h_snow', 'tke', 'ddt_tke_pconv', 'ddt_tke_hsh', 'qv_s', 't_s', 'c_t_lk', 't_ice', 'h_ice',
+! ml_varlist='u', 'v', 'w', 'temp', 'pres', 'pres_msl', 'qv', 'qc', 'qi', 'qr', 'qs', 'qg','clc','rh','smi','group:precip_vars','clcl','clcm','clch', 'group:additional_precip_vars','tqv','tqc','tqi', 'group:land_vars', 'freshsnow', 'albdif','t_2m','td_2m','rh_2m','pres_sfc','u_10m','v_10m','gust10','ASODIFD_S','ASODIFU_S','ASODIRD_S','ALHFL_S','ASHFL_S', 'ASOB_S', 'ASOB_T', 'ATHB_T', 'ATHB_S', 'ATHD_S', 'ATHU_S', 'AUMFL_S','AVMFL_S','TMAX_2M', 'TMIN_2M','runoff_s','runoff_g','UH_MAX','LPI_MAX','SDI2','SNOWLMT','HZEROCL','ww','CEILING','topography_c','fr_land','SOILTYP','aer_bc', 'aer_ss', 'hbas_con', 'htop_con', 'rain_gsp_rate', 'htop_dc', 'tqg', 'tkvh', 'tcm', 'tch', 'cldepth', 'alhfl_bs', 'alhfl_pl', 'aswflx_par_sfc', 'graupel_gsp_rate', 'snow_gsp_rate', 't_b1_lk', 't_bot_lk', 'h_b1_lk', 't_wml_lk', 't_mnw_lk', 'h_ml_lk', 'skinc', 'for_d', 'gz0', 'topography_c', 'sso_stdh', 'aer_su', 'aer_du', 'aer_or', 'cape_ml', 'cin_ml', 'h_snow', 'tke', 'ddt_tke_pconv', 'ddt_tke_hsh', 'qv_s', 't_s', 'c_t_lk', 't_ice', 'h_ice',
+!p_levels               = 10000,15000,20000,25000,30000,40000,50000,70000,85000,92500,95000,100000
+ pl_varlist             = ''
+!pl_varlist             = 'temp','u','v','geopot','rh'
+! output_grid                  =  .TRUE.
+ stream_partitions_ml = 1 ! needs to be adapted if num_io_procs is increased
+ remap = 1        
+! north_pole  = -170.0,47.0
+! reg_lon_def = -25.29,0.045,23.4
+! reg_lat_def = -13.05,0.045,12.06
+ north_pole  = -170.0,47.0
+ !reg_lon_def = -3.0,0.02,7.
+! reg_lon_def = -3.5,0.02,7.5
+!reg_lat_def = -8.,0.02,5. 
+!reg_lon_def = -3.8,0.02,7.7
+!reg_lat_def = -8.5,0.02,5.5 
+ reg_lon_def = -7.0,0.045,39.0
+reg_lat_def = 28.0,0.045,48.0
+/
