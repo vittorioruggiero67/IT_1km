@@ -1,0 +1,20 @@
+&master_nml
+ lrestart               = .false.
+ model_base_dir = '/home/vittorio/CORSA/ICON_IT_1km/' 
+/
+&time_nml
+ !ini_datetime_string = '2025-08-11T00:00:00Z'
+ dt_restart          = 7776000
+/
+&master_model_nml
+  model_type=1
+  model_name='ATMO'
+  model_namelist_filename='NAMELIST_lfff'
+  model_min_rank=1
+  model_max_rank=65536
+  model_inc_rank=1
+/ 
+&master_time_control_nml
+ experimentStartDate = '2025-08-12T00:00:00Z'
+ forecastLeadTime    = 'PT48H'
+/
