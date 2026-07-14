@@ -1,0 +1,115 @@
+------------------------------------------------------------------------------------------- /davinci-1/work/openfoam/digital_twin --------------------------------------------------------------------------------------------
+amgX/v2.2.0/GccOpt  calculix/2.20/Gcc  OneAPI/2021.1.1  OneAPI/compiler_local/2021.1.1  openfoam/v2412/GccOpt  petsc/3.15.0/IccOpt21  petsc/3.17.4/GccOpt  trilinos/13.0.1/gcc/8.3.1  trilinos/13.0.1/intel/2021
+
+-------------------------------------------------------------------------------------------- /davinci-1/work/digitaltwin/modules ---------------------------------------------------------------------------------------------
+arrow/13.0.0  cgns/4.4.0-gcc  gcc/12.2.0  gmsh/4.11.1                        nvhpc-sdk/nvhpc-hpcx-cuda11/23.7  nvhpc-sdk/nvhpc-nompi/23.7  openfoam/13/GccOpt             openfoam/v2512/GccOpt  precice/2.5.0
+boost/1.77.0  dakota/6.21.0   gcc/12.5.0  gnuplot/6.1.0                      nvhpc-sdk/nvhpc-hpcx-cuda12/23.7  nvhpc/23.7                  openfoam/v2112/GccOpt-coupled  openmpi/mlnx/4.1.8     pyfr/pyfr-develop
+boost/1.82.0  fftw3/3.3.10    gcc/15.2.0  nvhpc-sdk/nvhpc-byo-compiler/23.7  nvhpc-sdk/nvhpc-hpcx/23.7         openfoam/12/GccOpt          openfoam/v2312-hisa/GccOpt     openmpi/mlnx/5.0.9     zlib/1.3.1
+
+--------------------------------------------------------------------------------------------------- /cm/local/modulefiles ----------------------------------------------------------------------------------------------------
+boost/1.77.0       cm-upgrade/9.2  cuda-dcgm/3.1.3.1  gcc/11.2.0       luajit        module-info  openmpi/mlnx/gcc/64/4.1.5rc2                     pbspro/davinci/2024.1.3.20250423045815  python39
+cluster-tools/9.2  cmd             dot                ipmitool/1.8.18  mariadb-libs  null         pbspro.20260605/davinci/2022.1.2.20221214134647  pbspro/davinci/default                  shared
+cm-bios-tools      cmjob           freeipmi/1.6.8     lua/5.4.6        module-git    openldap     pbspro/davinci/2022.1.2.20221214134647           python3
+
+--------------------------------------------------------------------------------------------------- /cm/shared/modulefiles ---------------------------------------------------------------------------------------------------
+Abaqus/2021                      CST/old/2026                     modelzoo/0.1                         OneAPI/debugger/latest               OneAPI_2022/dal/2021.5.1                  parallel/20230122
+Abaqus/2022                      CST/old/2026-test-2              mpich/ge/gcc/64/3.4.2                OneAPI/dev-utilities/2021.1.1        OneAPI_2022/dal/latest                    ParaView/5.8.1
+Abaqus/2023                      cuda11.0/toolkit/11.0            msc/Actran/19.0                      OneAPI/dev-utilities/2021.3.0        OneAPI_2022/debugger/2021.5.0             ParaView/5.9.0
+Abaqus/2025                      cuda11.1/blas/11.1.1             msc/Actran/21.1                      OneAPI/dev-utilities/2021.10.0       OneAPI_2022/debugger/latest               ParaView/5.13.2
+Abaqus/old/2023-bck              cuda11.1/fft/11.1.1              msc/Adams/2023_4                     OneAPI/dev-utilities/latest          OneAPI_2022/dev-utilities/2021.5.1        ParaView/6.1.0
+Abaqus/old/2025                  cuda11.1/toolkit/11.1.1          msc/Adams/2024_1                     OneAPI/dnnl-cpu-gomp/2021.1.1        OneAPI_2022/dev-utilities/latest          particleworks/8.1.0
+Abaqus/old/2025-broken           cuda11.4/blas/11.4.2             msc/Apex/20241                       OneAPI/dnnl-cpu-gomp/2021.3.0        OneAPI_2022/dnnl-cpu-gomp/2022.0.1        pbs/2024.1.3.20250423045815
+Abaqus/old/2025-new              cuda11.4/fft/11.4.2              msc/Digimat/2021.4                   OneAPI/dnnl-cpu-gomp/2023.2.0        OneAPI_2022/dnnl-cpu-gomp/latest          pointwise/2022.1.2
+Abaqus/old/foo.lua               cuda11.4/toolkit/11.4.2          msc/Digimat/2024.2                   OneAPI/dnnl-cpu-gomp/latest          OneAPI_2022/dnnl-cpu-iomp/2022.0.1        pointwise/2022.2
+Abaqus/old2023                   cuda12.1/blas/12.1.1             msc/Digimat/2025.2                   OneAPI/dnnl-cpu-iomp/2021.1.1        OneAPI_2022/dnnl-cpu-iomp/latest          pointwise/2023.2
+aerox2/2022                      cuda12.1/fft/12.1.1              msc/Dytran/2021                      OneAPI/dnnl-cpu-iomp/2021.3.0        OneAPI_2022/dnnl-cpu-tbb/2022.0.1         PowerACOUSTICS/2021-R4
+aerox2/2023.1                    cuda12.1/nsight/12.1.1           msc/Dytran/2023.2                    OneAPI/dnnl-cpu-iomp/2023.2.0        OneAPI_2022/dnnl-cpu-tbb/latest           PowerACOUSTICS/2025-R2
+aerox2/2023.2                    cuda12.1/profiler/12.1.1         msc/Marc/2020                        OneAPI/dnnl-cpu-iomp/latest          OneAPI_2022/dnnl/2022.0.1                 PowerDELTA/2021-R4
+aerox2/2023.3                    cuda12.1/toolkit/12.1.1          msc/Marc/2020.1                      OneAPI/dnnl-cpu-tbb/2021.1.1         OneAPI_2022/dnnl/latest                   PowerDELTA/2025-R2
+aerox2/2024.1                    cuda12.4/toolkit/12.4            msc/Marc/2024.2                      OneAPI/dnnl-cpu-tbb/2021.3.0         OneAPI_2022/dpct/2022.0.0                 PowerFLOW/6-2021-R4
+aerox2/2024.2                    cuda12.8/toolkit/12.8            msc/Nastran/2007                     OneAPI/dnnl-cpu-tbb/2023.2.0         OneAPI_2022/dpct/latest                   PowerFLOW/6-2021-R7
+aerox2/2024.3                    cuda12.9/toolkit/12.9            msc/Nastran/2014.1                   OneAPI/dnnl-cpu-tbb/latest           OneAPI_2022/dpl/2021.6.0                  PowerFLOW/6-2025-R3
+aerox2/2025.1                    cudnn/8.7.0                      msc/Nastran/2016.1                   OneAPI/dnnl/2021.1.1                 OneAPI_2022/dpl/latest                    proxy/proxy_16(default)
+aerox2/2025.2                    cudnn/8.9.7                      msc/Nastran/2020sp                   OneAPI/dnnl/2021.3.0                 OneAPI_2022/icc/2022.0.1                  proxy/proxy_16_old
+Altair/2021                      cudnn/9.1.0.70                   msc/Nastran/2021.2                   OneAPI/dnnl/2023.2.0                 OneAPI_2022/icc/latest                    proxy/proxy_20
+Altair/2021.2                    default-environment              msc/Nastran/2022.4                   OneAPI/dnnl/latest                   OneAPI_2022/icc32/2022.0.1                proxy/proxy_20_old
+Altair/2022.2                    dotnet/5.0.14                    msc/Nastran/2024.1                   OneAPI/dpct/2021.1.1                 OneAPI_2022/icc32/latest                  pycharm/2021.1.1
+Altair/2022.3                    dust/072                         msc/Nastran/20140                    OneAPI/dpct/2021.3.0                 OneAPI_2022/init_opencl/2022.0.1          pycharm/2024.1.4
+Altair/2023                      eclipse/2022-06                  msc/Nastran/20161                    OneAPI/dpct/2023.2.0                 OneAPI_2022/init_opencl/latest            pyfluent/20231219
+Altair/2023.1                    ESATAN-TMS/2023                  msc/Nastran/20180                    OneAPI/dpct/latest                   OneAPI_2022/inspector/2022.0.0            python/3.10.14
+Altair/2024                      ESATAN-TMS/2024                  msc/Nastran/20182                    OneAPI/dpl/2021.1.1                  OneAPI_2022/inspector/latest              python/3.11.0
+Altair/2024.1                    esteco/modeFRONTIER/2021R3       msc/Nastran/20190                    OneAPI/dpl/2021.4.0                  OneAPI_2022/intel_ipp_ia32/2021.5.1       python/3.11.8
+Altair/2025                      esteco/modeFRONTIER/2022R3       msc/Nastran/20200                    OneAPI/dpl/2022.2.0                  OneAPI_2022/intel_ipp_ia32/latest         python/3.12.4
+Altair/2026                      esteco/modeFRONTIER/2024R1.1     msc/Nastran/20212                    OneAPI/dpl/latest                    OneAPI_2022/intel_ipp_intel64/2021.5.1    python/3.12.13
+AMD/amdblis-3.0-aocc-3.0.0       esteco/modeFRONTIER/2025R2       msc/Nastran/old/2007                 OneAPI/init_opencl/2021.1.1          OneAPI_2022/intel_ipp_intel64/latest      qt/5.12.12
+AMD/amdfftw-3.0-aocc-3.0.0       esteco/modeFRONTIER/2025R3       msc/Nastran/old/2014.1               OneAPI/init_opencl/2021.3.0          OneAPI_2022/intel_ippcp_ia32/2021.5.0     qt/6.8
+AMD/amdlibflame-3.0-aocc-3.0.0   esteco/modeFRONTIER/2026R1       msc/Nastran/old/2016.1               OneAPI/inspector/2021.1.1            OneAPI_2022/intel_ippcp_ia32/latest       R/4.2.0
+AMD/amdlibm-3.0-aocc-3.0.0       exfat/1.3.0                      msc/Nastran/old/2020sp               OneAPI/inspector/2021.3.0            OneAPI_2022/intel_ippcp_intel64/2021.5.0  rust/1.6.0
+AMD/amdscalapack-3.0-aocc-3.0.0  fftw3/openmpi/gcc/64/3.3.10      msc/Nastran/old/2021.2               OneAPI/inspector/2023.2.0            OneAPI_2022/intel_ippcp_intel64/latest    simcenter/Amesim/2021.1
+AMD/amduprof-3.4.475             flightlab/3.8.2                  msc/Nastran/old/2022.4               OneAPI/inspector/latest              OneAPI_2022/itac/2021.5.0                 simcenter/Amesim/2304
+AMD/aocc-3.0.0-gcc-8.3.1         flightlab/3.9.2                  msc/Nastran/old/2024.1               OneAPI/intel_ipp_ia32/2021.1.1       OneAPI_2022/itac/latest                   simcenter/Amesim/2310(default)
+aniform/5.3.1                    flightlab/3.9.4                  msc/Nastran/old/20140                OneAPI/intel_ipp_ia32/2021.3.0       OneAPI_2022/mkl/2022.0.1                  simcenter/Amesim/2504
+ansys/19.1                       flightlab/3.10.1                 msc/Nastran/old/20161                OneAPI/intel_ipp_ia32/2021.9.0       OneAPI_2022/mkl/latest                    simcenter/FLOEFD/2022.1
+ansys/2020R1                     flightlab/3.11.0                 msc/Nastran/old/20180                OneAPI/intel_ipp_ia32/latest         OneAPI_2022/mkl32/2022.0.1                simcenter/FLOEFD/2205
+ansys/2021R1                     Flowunsteady/Flowunsteady        msc/Nastran/old/20182                OneAPI/intel_ipp_intel64/2021.1.1    OneAPI_2022/mkl32/latest                  simcenter/FLOEFD/2312
+ansys/2021R1-SP1                 gcc/11.2.0                       msc/Nastran/old/20190                OneAPI/intel_ipp_intel64/2021.3.0    OneAPI_2022/mpi/2021.5.0                  simcenter/FLOEFD/2406.0
+ansys/2021R2                     gdb/10.2                         msc/Nastran/old/20200                OneAPI/intel_ipp_intel64/2021.9.0    OneAPI_2022/mpi/latest                    simcenter/FLOEFD/2412
+ansys/2022R1                     globalarrays/openmpi/gcc/64/5.8  msc/Nastran/old/20212                OneAPI/intel_ipp_intel64/latest      OneAPI_2022/oclfpga/2022.0.1              simcenter/FLOEFD/2412-dbg
+ansys/2022R2                     golang/1.24.4                    msc/ODYSSEE/2024.1.1                 OneAPI/intel_ippcp_ia32/2021.1.1     OneAPI_2022/oclfpga/latest                simcenter/FLOEFD/2512
+ansys/2023R1                     gyrox3/2022                      msc/ODYSSEE/2025.1.1                 OneAPI/intel_ippcp_ia32/2021.3.0     OneAPI_2022/tbb/2021.5.0                  simcenter/Heeds/2022.1
+ansys/2023R2                     gyrox3/2023.1                    msc/Patran/20234                     OneAPI/intel_ippcp_ia32/2021.8.0     OneAPI_2022/tbb/latest                    simcenter/Heeds/2022.1.0001
+ansys/2024R1                     gyrox3/2023.2                    mvapich2/gcc/64/2.3.7                OneAPI/intel_ippcp_ia32/latest       OneAPI_2022/tbb32/2021.5.0                StarCCM+/13.02.013
+ansys/2024R1-SP3                 gyrox3/2023.3                    nccl/2.25.1_cuda12                   OneAPI/intel_ippcp_intel64/2021.1.1  OneAPI_2022/tbb32/latest                  StarCCM+/13.06.012
+ansys/2024R2                     gyrox3/2024.1                    neovim/0.7.2                         OneAPI/intel_ippcp_intel64/2021.3.0  OneAPI_2022/vpl/2022.0.0                  StarCCM+/13.06.012-R8
+ansys/2024R2-devbuild2403        gyrox3/2024.2                    netcdf/gcc/64/gcc/64/4.8.1           OneAPI/intel_ippcp_intel64/2021.8.0  OneAPI_2022/vpl/latest                    StarCCM+/15.06.008
+ansys/2025R1                     gyrox3/2024.3                    netperf/2.7.0                        OneAPI/intel_ippcp_intel64/latest    OneAPI_2022/vtune/2022.0.0                StarCCM+/15.06.008-R8
+ansys/2025R2                     gyrox3/2025.1                    nv-sdk-tool/nvhpc-byo-compiler/21.2  OneAPI/itac/2021.1.1                 OneAPI_2022/vtune/latest                  StarCCM+/16.04.012
+ansys/2026R1                     gyrox3/2025.2                    nv-sdk-tool/nvhpc-byo-compiler/21.9  OneAPI/itac/2021.3.0                 OneAPI_2025/advisor/2025.0                StarCCM+/16.04.012-R8
+ansys/EMA2025R2                  hdf5_18/1.8.21                   nv-sdk-tool/nvhpc-byo-compiler/23.5  OneAPI/itac/2021.10.0                OneAPI_2025/advisor/latest                StarCCM+/16.06.008-R8
+ansys_avxcelerate/2022R1         HDFVIEW/v3.1.4                   nv-sdk-tool/nvhpc-hpcx-cuda11/23.5   OneAPI/itac/latest                   OneAPI_2025/ccl/2021.14.0                 StarCCM+/17.02.006
+awscli/2.24.27                   helm/v3.10.3                     nv-sdk-tool/nvhpc-hpcx-cuda12/23.5   OneAPI/mkl/2021.1.1                  OneAPI_2025/ccl/latest                    StarCCM+/17.02.006-R8
+BETA_CAE/19.1                    hpcx/mlnx-ofed51/2.7.4           nv-sdk-tool/nvhpc-hpcx/23.5          OneAPI/mkl/2021.3.0                  OneAPI_2025/compiler-intel-llvm/2025.0.4  StarCCM+/17.04.008
+BETA_CAE/23.0.1                  htop/htop                        nv-sdk-tool/nvhpc-nompi/21.2         OneAPI/mkl/2023.2.0                  OneAPI_2025/compiler-intel-llvm/latest    StarCCM+/17.04.008-R8
+BETA_CAE/23.1.1                  hwloc/1.11.11                    nv-sdk-tool/nvhpc-nompi/21.9         OneAPI/mkl/latest                    OneAPI_2025/compiler-rt/2025.0.4          StarCCM+/18.04.008
+BETA_CAE/24.0.0                  hwloc2/2.7.1                     nv-sdk-tool/nvhpc-nompi/23.5         OneAPI/mkl32/2021.1.1                OneAPI_2025/compiler-rt/latest            StarCCM+/18.06.006
+BETA_CAE/24.1.0                  hyperlynx/HLVX.2.8               nv-sdk-tool/nvhpc/21.2               OneAPI/mkl32/2021.3.0                OneAPI_2025/compiler/2025.0.4             StarCCM+/20.02.007
+BETA_CAE/25.0.0                  hyperlynx/HLVX.2.11              nv-sdk-tool/nvhpc/21.9               OneAPI/mkl32/2023.2.0                OneAPI_2025/compiler/latest               StarCCM+/21.02.008
+BETA_CAE/25.1.0                  hyperlynx/HLVX.2.12              nv-sdk-tool/nvhpc/23.5               OneAPI/mkl32/latest                  OneAPI_2025/debugger/2025.0.0             StarCCM+/21.02.008-R8
+BETA_CAE/25.2.0-prerelease-no    hyperlynx/HLVX.2409              nvtop/nvtop                          OneAPI/mpi/2021.1.1                  OneAPI_2025/debugger/latest               su2-avx/7.5.1
+BETA_CAE/2025.1                  hyperlynx/HLVX.2510              octave/6.3.0                         OneAPI/mpi/2021.3.0                  OneAPI_2025/dev-utilities/2025.0.0        su2/7.5.1
+BETA_CAE/2025.2.0                intel-tbb-oss/ia32/2021.4.0      ollama/0.5.11                        OneAPI/mpi/2021.10.0                 OneAPI_2025/dev-utilities/latest          su2/8.0.0
+BETA_CAE/2025.2.1                intel-tbb-oss/intel64/2021.4.0   ollama/0.12.6                        OneAPI/mpi/latest                    OneAPI_2025/dnnl/3.6.1                    su2/8.0.1
+bison/3.4.0                      iozone/3_492                     ollama/0.12.11                       OneAPI/oclfpga/2021.1.1              OneAPI_2025/dnnl/latest                   su2/8.3.0
+bison/3.8.2                      Java/21                          ollama/0.23.3                        OneAPI/oclfpga/2021.3.0              OneAPI_2025/dpct/2025.0.0                 Tanner/2024-3
+blas/gcc/64/3.10.0               Julia/1.12.6                     ollama/ollama                        OneAPI/oclfpga/2023.2.0              OneAPI_2025/dpct/latest                   tecplot/16.1.1.68252c
+bonnie++/2.00a                   lapack/gcc/64/3.10.0             OneAPI/advisor/2021.1.1              OneAPI/oclfpga/latest                OneAPI_2025/dpl/2022.7                    tecplot/2012r1
+boost/1.77.0                     libcusparse_lt/0.7.1             OneAPI/advisor/2021.3.0              OneAPI/tbb/2021.1.1                  OneAPI_2025/dpl/latest                    tecplot/2013r1
+boost/1.87                       Libero/2021.2.0.11               OneAPI/advisor/2023.2.0              OneAPI/tbb/2021.3.0                  OneAPI_2025/intel_ipp_intel64/2022.0      tecplot/2014r2
+Calibre/2025.1                   Libero/2023.1                    OneAPI/advisor/latest                OneAPI/tbb/2021.10.0                 OneAPI_2025/intel_ipp_intel64/latest      tecplot/2022r2
+CGAL/default                     likwid/5.2.0                     OneAPI/ccl/2021.1.1                  OneAPI/tbb/latest                    OneAPI_2025/intel_ippcp_intel64/2025.0    tecplot/2023r1
+charles/2025.2                   ls-dyna/R7.1.1                   OneAPI/ccl/2021.3.0                  OneAPI/tbb32/2021.1.1                OneAPI_2025/intel_ippcp_intel64/latest    tecplot/2024r1
+charles/2025.2.1                 MAGMASOFT/v6.0.0                 OneAPI/ccl/2021.10.0                 OneAPI/tbb32/2021.3.0                OneAPI_2025/mkl/2025.0                    tecplot/2025r2
+cm-pmix3/3.1.4                   MAGMASOFT/v6.1.0                 OneAPI/ccl/latest                    OneAPI/tbb32/2021.10.0               OneAPI_2025/mkl/latest                    tecplot/default
+cm-pmix4/4.1.1                   Matlab/R2018b                    OneAPI/clck/2021.1.1                 OneAPI/tbb32/latest                  OneAPI_2025/mpi/2021.14                   tecplot/old/16.1.1.68252c
+cmake/3.20.2                     Matlab/R2021b                    OneAPI/clck/2021.3.0                 OneAPI/vpl/2021.1.1                  OneAPI_2025/mpi/latest                    tecplot/old/2012r1
+CMAKE/3.31.6                     Matlab/R2021b-c                  OneAPI/clck/latest                   OneAPI/vpl/2021.4.0                  OneAPI_2025/tbb/2022.0                    tecplot/old/2013r1
+COMSOL/56                        Matlab/R2022a                    OneAPI/compiler-rt/2021.1.1          OneAPI/vpl/latest                    OneAPI_2025/tbb/latest                    tecplot/old/2014r2
+COMSOL/60                        Matlab/R2022a-sc                 OneAPI/compiler-rt/2021.3.0          OneAPI/vtune/2021.1.1                OneAPI_2025/umf/0.9.1                     tecplot/old/2022r2
+COMSOL/61                        Matlab/R2022b                    OneAPI/compiler-rt/2023.2.0          OneAPI/vtune/2021.5.0                OneAPI_2025/umf/latest                    tecplot/old/2023r1
+COMSOL/63                        Matlab/R2023a                    OneAPI/compiler-rt32/2021.1.1        OneAPI/vtune/2023.2.0                OneAPI_2025/vtune/2025.0                  tecplot/old/2024r1
+COMSOL/63-n                      Matlab/R2023b                    OneAPI/compiler-rt32/2021.3.0        OneAPI/vtune/latest                  OneAPI_2025/vtune/latest                  tecplot/old/2025r2
+coral/cpu(default)               Matlab/R2023bu10                 OneAPI/compiler-rt32/2023.2.0        OneAPI_2022/advisor/2022.0.0         openblas/dynamic/(default)                tempest
+coral/gpu                        Matlab/R2024a                    OneAPI/compiler/2021.1.1             OneAPI_2022/advisor/latest           openblas/dynamic/0.3.18                   valgrind/3.17
+CST/2022                         Matlab/R2025b                    OneAPI/compiler/2021.3.0             OneAPI_2022/ccl/2021.5.0             openmpi/5.0.8                             vcollab/21.7
+CST/2023                         Mentor/questasim                 OneAPI/compiler/2023.2.0             OneAPI_2022/ccl/latest               openmpi/gcc/64/4.0.7-gcc-8.5.0            vcollab/25.1
+CST/2024                         Mentor/questasim-2022.2          OneAPI/compiler32/2021.1.1           OneAPI_2022/clck/2021.5.0            openmpi/gcc/64/4.1.0-gcc-10.2.0           vscode/1.57.1
+CST/2025                         Mentor/questasim-2025.3          OneAPI/compiler32/2021.3.0           OneAPI_2022/clck/latest              openmpi/gcc/64/4.1.2                      vscode/1.89
+CST/2026                         METACOMP/19_1                    OneAPI/compiler32/2023.2.0           OneAPI_2022/compiler-rt/2022.0.1     openmpi/gcc/64/4.1.6-gcc-8.5.0            vscode/1.93
+CST/2026-test                    METACOMP/20_1                    OneAPI/dal/2021.1.1                  OneAPI_2022/compiler-rt/latest       openmpi/gcc/64/4.1.7rc1                   vscode/1.95
+CST/old/2022                     METACOMP/21_1                    OneAPI/dal/2021.3.0                  OneAPI_2022/compiler-rt32/2022.0.1   openmpi/gcc/64/default                    vulkan/1.2.198
+CST/old/2022-bck                 METACOMP/21_1_U3                 OneAPI/dal/2023.2.0                  OneAPI_2022/compiler-rt32/latest     openmpi4/gcc/4.1.2                        wavesix/2026
+CST/old/2023                     METACOMP/22_1                    OneAPI/dal/latest                    OneAPI_2022/compiler/2022.0.1        openshift/4.11                            Xilinx/xilinx-2022.2
+CST/old/2024                     METACOMP/22_5                    OneAPI/debugger/10.0.0               OneAPI_2022/compiler/latest          openstack/5.7.0
+CST/old/2025                     miniconda3/py310_23.1.0-1        OneAPI/debugger/10.1.2               OneAPI_2022/compiler32/2022.0.1      OpenVSP/3.50.1
+CST/old/2025-15042026            miniconda3/py312_2               OneAPI/debugger/2023.2.0             OneAPI_2022/compiler32/latest        parabricks/3.7.0-4.ampere
+
